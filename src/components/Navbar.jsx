@@ -5,6 +5,7 @@ import { removeUser } from "../redux/userSlice"
 import axios from "axios";
 import { removeFeed } from "../redux/feedSlice";
 import { removeConnections } from "../redux/connectionSlice";
+import { Base_URL } from "../utils/constants";
 
 export const Navbar=()=>{
   const navigate= useNavigate()
@@ -16,7 +17,7 @@ export const Navbar=()=>{
   }
   const logoutHandler=async()=>{
     try{
-      await axios.post("http://localhost:5566/logout",{},{withCredentials:true})
+      await axios.post(Base_URL+"/logout",{},{withCredentials:true})
       dispatch(removeUser())
       dispatch(removeFeed())
       dispatch(removeConnections())

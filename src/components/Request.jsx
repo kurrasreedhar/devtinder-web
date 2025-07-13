@@ -2,13 +2,14 @@ import axios from "axios"
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addRequest,removeRequest } from "../redux/requestSlice";
+import { Base_URL } from "../utils/constants";
 
 export const Requests=()=>{
    const Requests= useSelector(store=>store?.request)
    const dispatch= useDispatch()
    const requestApiHandler=async()=>{
     try{
-        const res= await axios.get("http://localhost:5566/user/request/pendings",{withCredentials: true})
+        const res= await axios.get(Base_URL+"/user/request/pendings",{withCredentials: true})
          dispatch(addRequest(res?.data?.connections))
     } 
     catch(err){
@@ -20,7 +21,7 @@ export const Requests=()=>{
    },[])
 
     const requestHandler=async(status,id)=>{
-         await axios.post("http://localhost:5566/request/review/" + status +"/"+id ,{},{withCredentials: true}) 
+         await axios.post(Base_URL+"/request/review/" + status +"/"+id ,{},{withCredentials: true}) 
         dispatch(removeRequest(id))}
 
    return  (<div className="text-center my-6"> 

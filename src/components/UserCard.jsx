@@ -1,6 +1,7 @@
 import axios from "axios"
 import { removeSingleFeed } from "../redux/feedSlice"
 import { useDispatch } from "react-redux"
+import { Base_URL } from "../utils/constants"
 
 export const UserCard=({fields})=>{
   const dispatch= useDispatch()
@@ -9,7 +10,7 @@ export const UserCard=({fields})=>{
 
 const requestHandler=async(status,id)=>{
   try{
-     const res = await axios.post("http://localhost:5566/request/send/"+ status + "/" + id,{},{withCredentials: true })
+     const res = await axios.post(Base_URL+"/request/send/"+ status + "/" + id,{},{withCredentials: true })
      console.log(res)
      dispatch( removeSingleFeed(id))}
      catch(err){

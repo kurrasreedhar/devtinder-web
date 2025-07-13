@@ -5,6 +5,7 @@ import { useEffect } from "react"
 import { useDispatch } from "react-redux"
 import { addUser } from "../redux/userSlice"
 import { useSelector } from "react-redux"
+import { Base_URL } from "../utils/constants"
 
 export const Body=()=>{
     const user= useSelector(store=>store.user)
@@ -14,7 +15,7 @@ export const Body=()=>{
     const getLoggedInfo= async()=>{
            if(user) return ;
     try{
-        const res= await axios.get("http://localhost:5566/profile",{withCredentials:true})
+        const res= await axios.get(Base_URL+"/profile",{withCredentials:true})
             dispatch(addUser(res.data))
  }
     catch(err){

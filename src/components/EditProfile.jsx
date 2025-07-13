@@ -3,6 +3,7 @@ import { UserCard } from "./UserCard"
 import axios from "axios"
 import { useDispatch, } from "react-redux";
 import { addUser } from "../redux/userSlice";
+import { Base_URL } from "../utils/constants";
 
 export const Editprofile=({user})=>{
      if(!user) return
@@ -19,7 +20,7 @@ export const Editprofile=({user})=>{
          const SaveHandler=async()=>{
             
             try{
-         const res=   await axios.patch("http://localhost:5566/profile/edit",{
+         const res=   await axios.patch(Base_URL+"/profile/edit",{
                 firstName,lastName,age,bio,photoUrl,gender},{withCredentials: true})
                 dispatch(addUser(res?.data?.data))
                 setShowToaster(true) 

@@ -3,13 +3,14 @@ import axios from "axios";
 import { addFeed } from "../redux/feedSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { UserCard } from "./UserCard";
+import { Base_URL } from "../utils/constants";
 
 export const Feed=()=>{
     const feed= useSelector(store=>store?.feed)
     const dispatch= useDispatch()
     const feedHandler=async()=>{
        if(feed) return;
-       try{ const res= await axios.get("http://localhost:5566/user/feed",{ withCredentials: true })
+       try{ const res= await axios.get(Base_URL+"/user/feed",{ withCredentials: true })
         dispatch(addFeed(res.data))}
         catch(err){
             console.error(err.message)
